@@ -1,0 +1,191 @@
+{
+  "timestamp": "2021-01-17T08:30:12",
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.0.3",
+    "typescriptVersion": "4.0.2"
+  },
+  "components": [
+    {
+      "filePath": "./src/components/gallery/gallery.tsx",
+      "encapsulation": "scoped",
+      "tag": "fireenjin-designer-gallery",
+      "readme": "# fireenjin-designer-gallery\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [
+        "fireenjin-designer-sidebar",
+        "stencil-router",
+        "stencil-route"
+      ],
+      "dependencyGraph": {
+        "fireenjin-designer-gallery": [
+          "fireenjin-designer-sidebar",
+          "stencil-router",
+          "stencil-route"
+        ],
+        "fireenjin-designer-sidebar": [
+          "fireenjin-designer-sidebar-component"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/organism/organism.tsx",
+      "encapsulation": "scoped",
+      "tag": "fireenjin-designer-organism",
+      "readme": "# fireenjin-designer-organism\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "component",
+          "type": "{ docs: string; docsTags: any[]; encapsulation: string; events: any[]; methods: any[]; presets: any; props: { attr: string; default: any; docs: string; docsTags: any[]; mutable: boolean; name: string; optional: boolean; reflectToAttr: boolean; required: boolean; type: string; }[]; readme: string; slots: any[]; styles: any[]; tag: string; usage: any; }",
+          "mutable": true,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ docs: string; docsTags: any[]; encapsulation: string; events: any[]; methods: any[]; presets: any; props: { attr: string; default: any; docs: string; docsTags: any[]; mutable: boolean; name: string; optional: boolean; reflectToAttr: boolean; required: boolean; type: string; }[]; readme: string; slots: any[]; styles: any[]; tag: string; usage: any; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "match",
+          "type": "MatchResults",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "MatchResults"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    },
+    {
+      "filePath": "./src/components/sidebar/sidebar.tsx",
+      "encapsulation": "none",
+      "tag": "fireenjin-designer-sidebar",
+      "readme": "# fireenjin-designer-sidebar\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "components",
+          "type": "any",
+          "mutable": false,
+          "attr": "components",
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "default": "[]",
+          "values": [
+            {
+              "type": "any"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "fireenjin-designer-gallery"
+      ],
+      "dependencies": [
+        "fireenjin-designer-sidebar-component"
+      ],
+      "dependencyGraph": {
+        "fireenjin-designer-sidebar": [
+          "fireenjin-designer-sidebar-component"
+        ],
+        "fireenjin-designer-gallery": [
+          "fireenjin-designer-sidebar"
+        ]
+      }
+    },
+    {
+      "filePath": "./src/components/sidebar-component/sidebar-component.tsx",
+      "encapsulation": "shadow",
+      "tag": "fireenjin-designer-sidebar-component",
+      "readme": "# fireenjin-designer-sidebar-component\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "component",
+          "type": "{ docs: string; docsTags: any[]; encapsulation: string; events: any[]; methods: any[]; presets: any; props: { attr: string; default: any; docs: string; docsTags: any[]; mutable: boolean; name: string; optional: boolean; reflectToAttr: boolean; required: boolean; type: string; }[]; readme: string; slots: any[]; styles: any[]; tag: string; usage: any; }",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "{ docs: string; docsTags: any[]; encapsulation: string; events: any[]; methods: any[]; presets: any; props: { attr: string; default: any; docs: string; docsTags: any[]; mutable: boolean; name: string; optional: boolean; reflectToAttr: boolean; required: boolean; type: string; }[]; readme: string; slots: any[]; styles: any[]; tag: string; usage: any; }"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [],
+      "events": [
+        {
+          "event": "enjinSetPreset",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [
+        "fireenjin-designer-sidebar"
+      ],
+      "dependencies": [],
+      "dependencyGraph": {
+        "fireenjin-designer-sidebar": [
+          "fireenjin-designer-sidebar-component"
+        ]
+      }
+    }
+  ]
+}
