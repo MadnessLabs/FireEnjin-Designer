@@ -1,0 +1,9 @@
+/* sidebar-component styles go here */
+a {
+    display: block;
+    width: 100%;
+}
+
+.component-presets {
+    padding-left: 25px;
+}

@@ -1,0 +1,55 @@
+{
+  "name": "@madnesslabs/fireenjin-designer",
+  "private": true,
+  "version": "0.0.1",
+  "description": "A local component design system testing tool",
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "jsnext:main": "dist/esm/index.mjs",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "scripts": {
+    "build": "stencil build",
+    "dev": " stencil build --docs --dev --watch --serve",
+    "docs": " stencil build --docs",
+    "start": "npm-run-all --parallel dev presets:watch",
+    "test": "stencil test --spec",
+    "test:e2e": "stencil test --e2e",
+    "test:snapshot": "stencil test --e2e --screenshot",
+    "test:generate": "stencil test --spec --json --outputFile=src/jest-test-results.json",
+    "test:generate:watch": "stencil test --spec --json --outputFile=src/jest-test-results.json --watch",
+    "presets:build": "node tasks/compilePresets.js",
+    "presets:watch": "node tasks/compilePresets.js watch",
+    "test:watch": "stencil test --spec --watch"
+  },
+  "devDependencies": {
+    "@stencil/core": "^2.0.1",
+    "@types/jest": "^26.0.20",
+    "fast-glob": "^3.2.4",
+    "jest": "^26.6.3",
+    "npm-run-all": "^4.1.5"
+  },
+  "dependencies": {
+    "@stencil/router": "^1.0.1",
+    "marked": "^1.2.7",
+    "slideout": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madnesslabs/fireenjin-designer.git"
+  },
+  "author": "Madness Labs",
+  "bugs": {
+    "url": "https://github.com/madnesslabs/fireenjin-designer/issues"
+  },
+  "homepage": "https://github.com/madnesslabs/fireenjin-designer",
+  "jest": {
+    "preset": "@stencil/core/testing"
+  }
+}
