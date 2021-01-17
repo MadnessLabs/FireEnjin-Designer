@@ -1,6 +1,6 @@
 {
   "name": "@madnesslabs/fireenjin-designer",
-  "private": true,
+  "private": false,
   "version": "0.0.1",
   "description": "A local component design system testing tool",
   "license": "MIT",
