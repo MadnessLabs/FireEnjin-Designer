@@ -50,5 +50,8 @@
   "homepage": "https://github.com/madnesslabs/fireenjin-designer",
   "jest": {
     "preset": "@stencil/core/testing"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
