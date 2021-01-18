@@ -14,7 +14,7 @@ export class Gallery {
 
   @Prop() host: string;
   @Prop() ionicDocsFilePath: string;
-  @Prop() title = "FireEnjin Designer";
+  @Prop() heading = "FireEnjin Designer";
 
   @Element() galleryEl: any;
   
@@ -94,7 +94,7 @@ export class Gallery {
           <a class="menu-button" onClick={(event) => this.toggleSidebar(event)}>
             &#9776;
           </a>
-          {this.title ? <h2 innerHTML={this.title} /> : null}
+          {this.heading ? <h2 innerHTML={this.heading} /> : null}
           <a class="docs-button" onClick={(event) => this.viewDocs(event)}>Docs</a>
         </header>
         <div class="docs-panel" innerHTML={this.currentDoc} />

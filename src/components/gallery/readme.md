@@ -5,6 +5,15 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property            | Attribute              | Description | Type     | Default                |
+| ------------------- | ---------------------- | ----------- | -------- | ---------------------- |
+| `heading`           | `heading`              |             | `string` | `"FireEnjin Designer"` |
+| `host`              | `host`                 |             | `string` | `undefined`            |
+| `ionicDocsFilePath` | `ionic-docs-file-path` |             | `string` | `undefined`            |
+
+
 ## Dependencies
 
 ### Depends on
