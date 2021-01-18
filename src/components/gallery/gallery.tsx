@@ -16,6 +16,7 @@ export class Gallery {
   @Prop() host: string;
   @Prop() ionicDocsFilePath: string;
   @Prop() heading = "FireEnjin Designer";
+  @Prop() useHash = false;
 
   @Element() galleryEl: any;
   
@@ -88,7 +89,7 @@ export class Gallery {
   render() {
     return [
       <nav id="menu">
-        <fireenjin-designer-sidebar host={this.host} components={this.components} />
+        <fireenjin-designer-sidebar useHash={this.useHash} host={this.host} components={this.components} />
       </nav>,
       <main id="panel">
         <header>
@@ -99,9 +100,9 @@ export class Gallery {
           <a class="docs-button" onClick={(event) => this.viewDocs(event)}>Docs</a>
         </header>
         <div class="docs-panel" innerHTML={this.currentDoc} />
-        <stencil-router id="router">
+        <stencil-router id="router" historyType={this.useHash ? "hash" : "browser" } >
           {this.components.map((component) => 
-            <stencil-route url={component.url} component='fireenjin-designer-organism' componentProps={{component}} />
+            <stencil-route url={component.url} component='fireenjin-designer-organism' componentProps={{component, host: this.host, useHash: this.useHash}} />
           )}
         </stencil-router>
       </main>
