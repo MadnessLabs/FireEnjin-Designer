@@ -25,11 +25,11 @@
     "test:generate": "stencil test --spec --json --outputFile=src/jest-test-results.json",
     "test:generate:watch": "stencil test --spec --json --outputFile=src/jest-test-results.json --watch",
     "presets:build": "fireenjin presets",
-    "presets:watch": "fireenjin presets watch",
+    "presets:watch": "fireenjin presets www/presets.js watch",
     "test:watch": "stencil test --spec --watch"
   },
   "devDependencies": {
-    "@madnesslabs/fireenjin": "^1.4.4",
+    "@madnesslabs/fireenjin": "^1.4.5",
     "@stencil/core": "^2.0.1",
     "@types/jest": "^26.0.20",
     "fast-glob": "^3.2.4",

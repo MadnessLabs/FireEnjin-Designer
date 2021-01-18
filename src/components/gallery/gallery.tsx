@@ -63,6 +63,7 @@ export class Gallery {
   }
 
   async componentDidLoad() {
+    require("https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
     try {
       const response = await fetch('/core.json');
       this.docs = await response.json();
