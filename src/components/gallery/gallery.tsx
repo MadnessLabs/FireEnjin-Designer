@@ -1,5 +1,5 @@
 import '@stencil/router';
-import { Component, Element, State, h } from "@stencil/core";
+import { Component, Element, State, h, Prop } from "@stencil/core";
 import Slideout from "slideout";
 import marked from 'marked';
 
@@ -11,6 +11,9 @@ import marked from 'marked';
 export class Gallery {
   docs: any = [];
   slideout: Slideout;
+
+  @Prop() host: string;
+  @Prop() ionicDocsFilePath: string;
 
   @Element() galleryEl: any;
   
@@ -65,7 +68,7 @@ export class Gallery {
   async componentDidLoad() {
     require("https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
     try {
-      const response = await fetch('/core.json');
+      const response = await fetch(this.ionicDocsFilePath ? this.ionicDocsFilePath : `${this.host ? this.host : ""}/core.json`);
       this.docs = await response.json();
     } catch (error) {
       console.log("Error getting docs for components.");
