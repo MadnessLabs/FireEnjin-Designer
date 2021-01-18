@@ -2,6 +2,7 @@ import '@stencil/router';
 import { Component, Element, State, h, Prop } from "@stencil/core";
 import Slideout from "slideout";
 import marked from 'marked';
+import loadScript from '../../helpers/loadScript';
 
 @Component({
   tag: "fireenjin-designer-gallery",
@@ -67,7 +68,7 @@ export class Gallery {
   }
 
   async componentDidLoad() {
-    require("https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
+    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
     try {
       const response = await fetch(this.ionicDocsFilePath ? this.ionicDocsFilePath : `${this.host ? this.host : ""}/core.json`);
       this.docs = await response.json();
