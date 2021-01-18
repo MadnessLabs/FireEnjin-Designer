@@ -24,11 +24,12 @@
     "test:snapshot": "stencil test --e2e --screenshot",
     "test:generate": "stencil test --spec --json --outputFile=src/jest-test-results.json",
     "test:generate:watch": "stencil test --spec --json --outputFile=src/jest-test-results.json --watch",
-    "presets:build": "node tasks/compilePresets.js",
-    "presets:watch": "node tasks/compilePresets.js watch",
+    "presets:build": "fireenjin presets",
+    "presets:watch": "fireenjin presets watch",
     "test:watch": "stencil test --spec --watch"
   },
   "devDependencies": {
+    "@madnesslabs/fireenjin": "^1.4.4",
     "@stencil/core": "^2.0.1",
     "@types/jest": "^26.0.20",
     "fast-glob": "^3.2.4",
