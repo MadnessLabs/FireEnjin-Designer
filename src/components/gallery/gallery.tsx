@@ -46,7 +46,7 @@ export class Gallery {
   async getComponentPresets() {
     let promises = [];
     this.components.map((component, index) => {
-    this.components[index].url = `/organism/${component.tag}/:preset?`;
+    this.components[index].url = `${this.host ? this.host : ""}/organism/${component.tag}/:preset?`;
     promises.push(new Promise((resolve, reject) => {
         const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
         try {
@@ -88,7 +88,7 @@ export class Gallery {
   render() {
     return [
       <nav id="menu">
-        <fireenjin-designer-sidebar components={this.components} />
+        <fireenjin-designer-sidebar host={this.host} components={this.components} />
       </nav>,
       <main id="panel">
         <header>

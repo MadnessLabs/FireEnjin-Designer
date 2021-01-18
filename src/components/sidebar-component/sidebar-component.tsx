@@ -8,6 +8,7 @@ import { Component, Event, EventEmitter, Prop, h, ComponentInterface } from '@st
 export class SidebarComponent implements ComponentInterface {
   @Event() enjinSetPreset: EventEmitter<any>;
 
+  @Prop() host?: string;
   @Prop() component: {
     docs: string;
     docsTags: any[];
@@ -37,12 +38,12 @@ export class SidebarComponent implements ComponentInterface {
   render() {
     return this.component ? (
       <div>
-        <a href={`/organism/${this.component.tag}`}>
+        <a href={`${this.host ? this.host : ""}/organism/${this.component.tag}`}>
           {this.component.tag}
         </a>
         <div class="component-presets">
           {this.component.presets && Object.keys(this.component.presets).map((presetName) =>
-            <a href={`/organism/${this.component.tag}/${presetName}`}>
+            <a href={`${this.host ? this.host : ""}/organism/${this.component.tag}/${presetName}`}>
               {this.component.presets[presetName].name ? this.component.presets[presetName].name : presetName}
             </a>
           )}
