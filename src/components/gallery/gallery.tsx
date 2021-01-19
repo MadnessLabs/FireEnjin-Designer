@@ -48,7 +48,7 @@ export class Gallery implements ComponentInterface {
     this.components.map((component, index) => {
       this.components[index].url = `${this.host ? this.host : ""}/organism/${component.tag}/:preset?`;
       const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
-      this.components[index].presets = (window as any)?.presets[`${componentName}.presets`] 
+      this.components[index].presets = (window as any).presets && (window as any)?.presets[`${componentName}.presets`]
         ? (window as any).presets[`${componentName}.presets`] : {};
     });
 
