@@ -47,25 +47,10 @@ export class Gallery implements ComponentInterface {
     let promises = [];
     this.components.map((component, index) => {
       this.components[index].url = `${this.host ? this.host : ""}/organism/${component.tag}/:preset?`;
-      promises.push(new Promise((resolve, reject) => {
-          const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
-          try {
-            (require as any)([`${componentName}/${componentName}.presets`], (presets) => {
-              this.components[index].presets = presets.default;
-              resolve(presets.default);
-            });  
-          } catch (error) {
-            try {
-              (require as any)([`${componentName}.presets`], (presets) => {
-                this.components[index].presets = presets.default;
-                resolve(presets.default);
-              }); 
-            } catch (error2) {
-              console.log(`${component.tag} presets not found!`);
-              reject(`${component.tag} presets not found!`);
-            }
-          }
-      }));
+      const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
+      this.components[index].presets = (window as any)?.presets[`${componentName}/${componentName}.presets`] 
+        ? (window as any).presets[`${componentName}/${componentName}.presets`] 
+        : (window as any)?.presets[`${componentName}.presets`] ? (window as any).presets[`${componentName}.presets`] : null;
     });
 
     const response = await Promise.all(promises);
