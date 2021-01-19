@@ -13,10 +13,10 @@ export const config: Config = {
     {
       type: 'docs-readme'
     },
-    {
-      type: "docs-json",
-      file: "www/core.json"
-    }
+    // {
+    //   type: "docs-json",
+    //   file: "www/core.json"
+    // }
   ],
   preamble: '(C) Madness Labs https://MadnessLabs.net - MIT License',
 };
