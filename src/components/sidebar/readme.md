@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property     | Attribute    | Description | Type  | Default |
-| ------------ | ------------ | ----------- | ----- | ------- |
-| `components` | `components` |             | `any` | `[]`    |
+| Property     | Attribute    | Description | Type      | Default     |
+| ------------ | ------------ | ----------- | --------- | ----------- |
+| `components` | `components` |             | `any`     | `[]`        |
+| `host`       | `host`       |             | `string`  | `undefined` |
+| `useHash`    | `use-hash`   |             | `boolean` | `false`     |
 
 
 ## Dependencies

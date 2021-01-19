@@ -99,12 +99,15 @@ export class Gallery {
           {this.heading ? <h2 innerHTML={this.heading} /> : null}
           <a class="docs-button" onClick={(event) => this.viewDocs(event)}>Docs</a>
         </header>
-        <div class="docs-panel" innerHTML={this.currentDoc} />
-        <stencil-router id="router" historyType={this.useHash ? "hash" : "browser" } >
-          {this.components.map((component) => 
-            <stencil-route url={component.url} component='fireenjin-designer-organism' componentProps={{component, host: this.host, useHash: this.useHash}} />
-          )}
-        </stencil-router>
+        <div id="page-wrapper" style={{position: "relative" }}>
+          <div class="docs-panel" innerHTML={this.currentDoc} />
+          <stencil-router id="router" historyType={this.useHash ? "hash" : "browser" } >
+            {this.components.map((component) => 
+              <stencil-route url={component.url} component='fireenjin-designer-organism' componentProps={{component, host: this.host, useHash: this.useHash}} />
+            )}
+          </stencil-router>
+        </div>
+        
       </main>
     ];
   }
