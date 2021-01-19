@@ -2,7 +2,6 @@ import '@stencil/router';
 import { Component, Element, State, h, Prop, ComponentInterface } from "@stencil/core";
 import Slideout from "slideout";
 import marked from 'marked';
-import loadScript from '../../helpers/loadScript';
 
 @Component({
   tag: "fireenjin-designer-gallery",
@@ -47,18 +46,18 @@ export class Gallery implements ComponentInterface {
   async getComponentPresets() {
     let promises = [];
     this.components.map((component, index) => {
-    this.components[index].url = `${this.host ? this.host : ""}/organism/${component.tag}/:preset?`;
-    promises.push(new Promise((resolve, reject) => {
-        const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
-        try {
-          const presets = require(`${componentName}/${componentName}.presets`);
-          console.log(presets);
-          this.components[index].presets = presets.default;
-          resolve(presets.default);
-        } catch (error) {
-          console.log(`${component.tag} presets not found!`, error);
-          reject(`${component.tag} presets not found!`);
-        }
+      console.log(component);
+      this.components[index].url = `${this.host ? this.host : ""}/organism/${component.tag}/:preset?`;
+      promises.push(new Promise((resolve, reject) => {
+          const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
+          try {
+            const presets = require(`${componentName}.presets`);
+            this.components[index].presets = presets.default;
+            resolve(presets.default);
+          } catch (error) {
+            console.log(`${component.tag} presets not found!`, error);
+            reject(`${component.tag} presets not found!`);
+          }
       }));
     });
 
@@ -69,7 +68,6 @@ export class Gallery implements ComponentInterface {
   }
 
   async componentDidLoad() {
-    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js");
     try {
       const response = await fetch(this.ionicDocsFilePath ? this.ionicDocsFilePath : `${this.host ? this.host : ""}/core.json`);
       this.docs = await response.json();
