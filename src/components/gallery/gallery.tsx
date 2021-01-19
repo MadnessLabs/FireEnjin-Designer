@@ -50,13 +50,20 @@ export class Gallery implements ComponentInterface {
       promises.push(new Promise((resolve, reject) => {
           const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
           try {
-            (require as any)([`${componentName}.presets`], (presets) => {
+            (require as any)([`${componentName}/${componentName}.presets`], (presets) => {
               this.components[index].presets = presets.default;
               resolve(presets.default);
             });  
           } catch (error) {
-            console.log(`${component.tag} presets not found!`);
-            reject(`${component.tag} presets not found!`);
+            try {
+              (require as any)([`${componentName}.presets`], (presets) => {
+                this.components[index].presets = presets.default;
+                resolve(presets.default);
+              }); 
+            } catch (error2) {
+              console.log(`${component.tag} presets not found!`);
+              reject(`${component.tag} presets not found!`);
+            }
           }
       }));
     });
