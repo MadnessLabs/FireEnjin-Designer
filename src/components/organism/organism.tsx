@@ -62,10 +62,11 @@ export class Organism {
   }
 
   render() {
+    const Component = this.component?.tag;
     return (
       <div class="organism-wrapper">
         <div class="organism-canvas">
-          {this.component ? <this.component.tag {...this.currentProps} innerHTML={this.currentPreset.slot && typeof this.currentPreset.slot === "function" ? this.currentPreset.slot() : null} /> : null}
+          {this.component ? <Component {...this.currentProps} /> : null}
         </div>
         <div class="organism-sidebar">
           {this.component.props.map(prop => 
@@ -74,6 +75,10 @@ export class Organism {
               <input name={prop.name} onInput={event => this.updateProp(event, prop.name)} value={this.currentProps && this.currentProps[prop.name] ? this.currentProps[prop.name] : null} />
             </label>
           )}
+          <label>
+            Inner HTML
+            <input name="innerHTML" onInput={event => this.updateProp(event, "innerHTML")} />
+          </label>
         </div>
       </div>
     );

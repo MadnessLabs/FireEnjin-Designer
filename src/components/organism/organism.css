@@ -13,18 +13,19 @@
     height: 100%;
     position: absolute;
     overflow: auto;
-    width: calc(100% - var(--organism-sidebar-width, 200px));
+    width: calc(100% - var(--organism-sidebar-width, 240px));
     top: 0;
     left: 0;
     bottom: 0;
 }
 
 .organism-wrapper > .organism-sidebar {
-    width: var(--organism-sidebar-width, 200px);
+    width: var(--organism-sidebar-width, 240px);
     height: 100%;
     background-color: #CCC;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
+    overflow: auto;
 }

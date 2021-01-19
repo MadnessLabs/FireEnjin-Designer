@@ -1,5 +1,5 @@
 import '@stencil/router';
-import { Component, Element, State, h, Prop } from "@stencil/core";
+import { Component, Element, State, h, Prop, ComponentInterface } from "@stencil/core";
 import Slideout from "slideout";
 import marked from 'marked';
 import loadScript from '../../helpers/loadScript';
@@ -7,9 +7,9 @@ import loadScript from '../../helpers/loadScript';
 @Component({
   tag: "fireenjin-designer-gallery",
   styleUrl: "gallery.css",
-  scoped: true
+  shadow: true
 })
-export class Gallery {
+export class Gallery implements ComponentInterface {
   docs: any = [];
   slideout: Slideout;
 
@@ -99,7 +99,7 @@ export class Gallery {
           {this.heading ? <h2 innerHTML={this.heading} /> : null}
           <a class="docs-button" onClick={(event) => this.viewDocs(event)}>Docs</a>
         </header>
-        <div id="page-wrapper" style={{position: "relative" }}>
+        <div id="page-wrapper">
           <div class="docs-panel" innerHTML={this.currentDoc} />
           <stencil-router id="router" historyType={this.useHash ? "hash" : "browser" } >
             {this.components.map((component) => 
