@@ -56,7 +56,7 @@ export class Gallery {
           this.components[index].presets = presets.default;
           resolve(presets.default);
         } catch (error) {
-          console.log(`${component.tag} presets not found!`);
+          console.log(`${component.tag} presets not found!`, error);
           reject(`${component.tag} presets not found!`);
         }
       }));

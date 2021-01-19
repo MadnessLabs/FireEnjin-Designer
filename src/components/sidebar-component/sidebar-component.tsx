@@ -16,7 +16,12 @@ export class SidebarComponent implements ComponentInterface {
     encapsulation: string;
     events: any[];
     methods: any[];
-    presets: any;
+    presets: { 
+      id?: string;
+      name?: string;
+      description?: string;
+      props?: any;
+    }[];
     props: {
       attr: string;
       default: any;

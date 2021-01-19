@@ -64,10 +64,10 @@ export class Organism {
   render() {
     return (
       <div class="organism-wrapper">
-        <div>
+        <div class="organism-canvas">
           {this.component ? <this.component.tag {...this.currentProps} innerHTML={this.currentPreset.slot && typeof this.currentPreset.slot === "function" ? this.currentPreset.slot() : null} /> : null}
         </div>
-        <div class="sidebar">
+        <div class="organism-sidebar">
           {this.component.props.map(prop => 
             <label>
               {prop.name} - {prop.docs}
