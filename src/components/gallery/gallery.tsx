@@ -44,18 +44,14 @@ export class Gallery implements ComponentInterface {
   }
 
   async getComponentPresets() {
-    let promises = [];
-    this.components.map((component, index) => {
+    for (const [index, component] of this.components) {
       this.components[index].url = `${this.host ? this.host : ""}/organism/${component.tag}/:preset?`;
       const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
       this.components[index].presets = (window as any).presets && (window as any)?.presets[`${componentName}.presets`]
         ? (window as any).presets[`${componentName}.presets`] : {};
-    });
+    }
 
-    const response = await Promise.all(promises);
     this.components = [...this.components];
-
-    return response;
   }
 
   async componentDidLoad() {
