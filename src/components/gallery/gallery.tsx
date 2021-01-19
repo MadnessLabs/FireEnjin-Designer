@@ -7,7 +7,7 @@ import loadScript from '../../helpers/loadScript';
 @Component({
   tag: "fireenjin-designer-gallery",
   styleUrl: "gallery.css",
-  shadow: true
+  scoped: true
 })
 export class Gallery implements ComponentInterface {
   docs: any = [];
