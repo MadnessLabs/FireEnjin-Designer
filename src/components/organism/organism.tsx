@@ -44,9 +44,9 @@ export class Organism {
   setPreset(presetName: string) {
     if (this.component.presets && this.component.presets[presetName] && this.component.presets[presetName].props) {
       this.currentPreset = this.component.presets[presetName];
-      this.currentProps = {...this.component.presets[presetName].props};
+      this.currentProps = this.component?.presets && this.component?.presets[presetName]?.props ? {...this.component.presets[presetName].props} : {};
     } else {
-      this.currentProps = this.component.presets['default'] && this.component.presets['default'].props ? this.component.presets['default'].props : null;
+      this.currentProps = this.component?.presets['default'] && this.component.presets['default']?.props ? this.component.presets['default'].props : {};
     }
   }
 
@@ -77,7 +77,7 @@ export class Organism {
           )}
           <label>
             Inner HTML
-            <input name="innerHTML" onInput={event => this.updateProp(event, "innerHTML")} />
+            <input name="innerHTML" onInput={event => this.updateProp(event, "innerHTML")} value={this.currentProps && this.currentProps['innerHTML'] ? this.currentProps['innerHTML'] : null} />
           </label>
         </div>
       </div>
