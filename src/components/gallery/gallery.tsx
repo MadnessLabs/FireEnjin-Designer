@@ -44,7 +44,7 @@ export class Gallery implements ComponentInterface {
   }
 
   async getComponentPresets() {
-    for (const [index, component] of this.components) {
+    for (const [index, component] of this.components.entries()) {
       this.components[index].url = `${this.host ? this.host : ""}/organism/${component.tag}/:preset?`;
       const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
       this.components[index].presets = (window as any).presets && (window as any)?.presets[`${componentName}.presets`]
@@ -88,7 +88,7 @@ export class Gallery implements ComponentInterface {
           <div class="docs-panel" innerHTML={this.currentDoc} />
           <stencil-router id="router" historyType={this.useHash ? "hash" : "browser" } >
             {this.components.map((component) => 
-              <stencil-route url={component.url} component='fireenjin-designer-organism' componentProps={{component, host: this.host, useHash: this.useHash}} />
+              <stencil-route url={component.url} component='fireenjin-designer-organism' componentProps={{component, useHash: this.useHash, host: this.host}} />
             )}
           </stencil-router>
         </div>
