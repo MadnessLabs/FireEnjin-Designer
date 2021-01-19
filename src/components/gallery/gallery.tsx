@@ -46,16 +46,16 @@ export class Gallery implements ComponentInterface {
   async getComponentPresets() {
     let promises = [];
     this.components.map((component, index) => {
-      console.log(component);
       this.components[index].url = `${this.host ? this.host : ""}/organism/${component.tag}/:preset?`;
       promises.push(new Promise((resolve, reject) => {
           const componentName = component.tag.replace(component.tag.split('-')[0]+'-', '');
           try {
-            const presets = require(`${componentName}.presets`);
-            this.components[index].presets = presets.default;
-            resolve(presets.default);
+            (require as any)([`${componentName}.presets`], (presets) => {
+              this.components[index].presets = presets.default;
+              resolve(presets.default);
+            });  
           } catch (error) {
-            console.log(`${component.tag} presets not found!`, error);
+            console.log(`${component.tag} presets not found!`);
             reject(`${component.tag} presets not found!`);
           }
       }));
