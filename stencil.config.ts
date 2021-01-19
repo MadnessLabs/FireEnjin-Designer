@@ -2,7 +2,6 @@ import { Config } from '@stencil/core';
 
 export const config: Config = {
   namespace: 'fireenjin-designer',
-  globalScript: 'src/global.ts',
   outputTargets:[
     {
       type: 'dist'
