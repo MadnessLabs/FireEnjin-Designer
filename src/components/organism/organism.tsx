@@ -55,7 +55,7 @@ export class Organism {
     this.currentProps = {...this.currentProps};
   }
   
-  componentDidLoad() {
+  componentWillLoad() {
     if (this.match && this.match.params && this.match.params.preset) {
       this.setPreset(this.match.params.preset);
     }
