@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@stencil/router": "^1.0.1",
-    "marked": "^1.2.7",
+    "marked": "^1.2.8",
     "slideout": "^1.0.1"
   },
   "repository": {

@@ -68,7 +68,7 @@ export class Organism {
         <div class="organism-canvas">
           {this.currentPreset?.beforeHTML && <div class={{"organism-canvas-before": true}} innerHTML={this.currentPreset.beforeHTML(this.component, this.currentProps)} />}
           {Component && !this.currentPreset?.innerHTML && <Component {...this.currentProps} />}
-          {this.currentPreset?.innerHTML && <div class="organism-canvas-inner" innerHTML={this.currentPreset.innerHTML(this.component, this.currentProps)} />}
+          {this.currentPreset?.innerHTML && <div class="organism-canvas-inner" innerHTML={this.currentPreset.innerHTML(this.component, this.currentProps).replace("<component />", <Component {...this.currentProps} />)} />}
           {this.currentPreset?.afterHTML && <div class="organism-canvas-after" innerHTML={this.currentPreset.afterHTML(this.component, this.currentProps)} />}
         </div>
         <div class="organism-sidebar">
