@@ -66,7 +66,10 @@ export class Organism {
     return (
       <div class="organism-wrapper">
         <div class="organism-canvas">
-          {this.component ? <Component {...this.currentProps} /> : null}
+          {this.currentPreset?.beforeHTML && <div class={{"organism-canvas-before": true}} innerHTML={this.currentPreset.beforeHTML(this.component, this.currentProps)} />}
+          {Component && !this.currentPreset?.innerHTML && <Component {...this.currentProps} />}
+          {this.currentPreset?.innerHTML && <div class="organism-canvas-inner" innerHTML={this.currentPreset.innerHTML(this.component, this.currentProps)} />}
+          {this.currentPreset?.afterHTML && <div class="organism-canvas-after" innerHTML={this.currentPreset.afterHTML(this.component, this.currentProps)} />}
         </div>
         <div class="organism-sidebar">
           {this.component.props.map(prop => 
@@ -78,6 +81,10 @@ export class Organism {
           <label>
             Inner HTML
             <input name="innerHTML" onInput={event => this.updateProp(event, "innerHTML")} value={this.currentProps && this.currentProps['innerHTML'] ? this.currentProps['innerHTML'] : null} />
+          </label>
+          <label>
+            Class
+            <input name="class" onInput={event => this.updateProp(event, "class")} value={this.currentProps && this.currentProps['class'] ? this.currentProps['class'] : null} />
           </label>
         </div>
       </div>
