@@ -1,6 +1,6 @@
-import { Component, Prop, State, h } from '@stencil/core';
+import { Component, Prop, State, h, Element,  } from '@stencil/core';
 import { MatchResults } from '@stencil/router';
-
+import { OrganismComponent, OrganismPreset } from '../../interfaces';
 
 @Component({
   tag: 'fireenjin-designer-organism',
@@ -8,51 +8,43 @@ import { MatchResults } from '@stencil/router';
   scoped: true
 })
 export class Organism {
+  @Element() organismEl: HTMLFireenjinDesignerOrganismElement;
 
   @Prop({
     mutable: true
-  }) component: {
-    docs: string;
-    docsTags: any[];
-    encapsulation: string;
-    events: any[];
-    methods: any[];
-    presets: any;
-    props: {
-      attr: string;
-      default: any;
-      docs: string;
-      docsTags: any[];
-      mutable: boolean;
-      name: string;
-      optional: boolean;
-      reflectToAttr: boolean;
-      required: boolean;
-      type: string;
-    }[];
-    readme: string;
-    slots: any[];
-    styles: any[];
-    tag: string;
-    usage: any;
-  };
+  }) component: OrganismComponent;
   @Prop() match: MatchResults;
 
   @State() currentProps = {};
-  @State() currentPreset: any = {};
+  @State() currentPreset: OrganismPreset = {};
 
-  setPreset(presetName: string) {
+  setPreset(presetName = "default") {
     if (this.component.presets && this.component.presets[presetName] && this.component.presets[presetName].props) {
       this.currentPreset = this.component.presets[presetName];
       this.currentProps = this.component?.presets && this.component?.presets[presetName]?.props ? {...this.component.presets[presetName].props} : {};
     } else {
-      this.currentProps = this.component?.presets['default'] && this.component.presets['default']?.props ? this.component.presets['default'].props : {};
+      this.currentPreset = this.component?.presets?.default ? this.component.presets.default : {};
+      this.currentProps = this.component?.presets?.default?.props ? this.component.presets.default.props : {};
     }
+    if (typeof this.currentPreset?.hooks?.onSetPreset === "function") this.currentPreset.hooks.onSetPreset({
+      organismEl: this.organismEl,
+      props: this.currentProps,
+      preset: this.currentPreset,
+      presetName,
+      component: this.component
+    });
   }
 
-  updateProp(event, name: string) {
-    this.currentProps[name] = event.target.value;
+  updateProp(event, propName: string) {
+    this.currentProps[propName] = event.target.value;
     this.currentProps = {...this.currentProps};
+    if (typeof this.currentPreset?.hooks?.onUpdateProp === "function") this.currentPreset.hooks.onUpdateProp({
+      organismEl: this.organismEl,
+      props: this.currentProps,
+      preset: this.currentPreset,
+      propName,
+      component: this.component
+    });
   }
   
   componentWillLoad() {
@@ -68,7 +60,7 @@ export class Organism {
         <div class="organism-canvas">
           {this.currentPreset?.beforeHTML && <div class={{"organism-canvas-before": true}} innerHTML={this.currentPreset.beforeHTML(this.component, this.currentProps)} />}
           {Component && !this.currentPreset?.innerHTML && <Component {...this.currentProps} />}
-          {this.currentPreset?.innerHTML && <div class="organism-canvas-inner" innerHTML={this.currentPreset.innerHTML(this.component, this.currentProps).replace("<component />", <Component {...this.currentProps} />)} />}
+          {this.currentPreset?.innerHTML && <div class="organism-canvas-inner" innerHTML={this.currentPreset.innerHTML(this.component, this.currentProps)} />}
           {this.currentPreset?.afterHTML && <div class="organism-canvas-after" innerHTML={this.currentPreset.afterHTML(this.component, this.currentProps)} />}
         </div>
         <div class="organism-sidebar">
