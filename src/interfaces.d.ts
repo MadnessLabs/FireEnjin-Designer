@@ -38,3 +38,8 @@ export interface OrganismPreset {
     onUpdateProp?: (data?: { organismEl?: HTMLFireenjinDesignerOrganismElement; props?: any; preset?: OrganismPreset; propName?: string; component?: OrganismComponent }) => void;
   };
 }
+
+export interface OrganismPresets {
+    [presetName: string]: OrganismPreset;
+}
+
