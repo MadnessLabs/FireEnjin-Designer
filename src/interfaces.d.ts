@@ -34,8 +34,8 @@ export interface OrganismPreset {
   beforeHTML?: (component: any, props: any) => string;
   afterHTML?: (component: any, props: any) => string;
   hooks?: {
-    onSetPreset: (data?: { organismEl?: HTMLFireenjinDesignerOrganismElement; props?: any; preset?: OrganismPreset; presetName?: string; component?: OrganismComponent }) => void;
-    onUpdateProp?: (data?: { organismEl?: HTMLFireenjinDesignerOrganismElement; props?: any; preset?: OrganismPreset; propName?: string; component?: OrganismComponent }) => void;
+    onSetPreset: (data?: { organismEl?: any; props?: any; preset?: OrganismPreset; presetName?: string; component?: OrganismComponent }) => void;
+    onUpdateProp?: (data?: { organismEl?: any; props?: any; preset?: OrganismPreset; propName?: string; component?: OrganismComponent }) => void;
   };
 }
 
