@@ -1,4 +1,4 @@
-import { Component, Prop, State, h, Element,  } from '@stencil/core';
+import { Component, Prop, State, h, Element, Method,  } from '@stencil/core';
 import { MatchResults } from '@stencil/router';
 import { OrganismComponent, OrganismPreset } from '../../interfaces';
 
@@ -18,7 +18,8 @@ export class Organism {
   @State() currentProps = {};
   @State() currentPreset: OrganismPreset = {};
 
-  setPreset(presetName = "default") {
+  @Method()
+  async setPreset(presetName = "default") {
     if (this.component.presets && this.component.presets[presetName] && this.component.presets[presetName].props) {
       this.currentPreset = this.component.presets[presetName];
       this.currentProps = this.component?.presets && this.component?.presets[presetName]?.props ? {...this.component.presets[presetName].props} : {};
@@ -33,9 +34,12 @@ export class Organism {
       presetName,
       component: this.component
     });
+
+    return this.currentPreset;
   }
 
-  updateProp(event, propName: string) {
+  @Method()
+  async updateProp(event, propName: string) {
     this.currentProps[propName] = event.target.value;
     this.currentProps = {...this.currentProps};
     if (typeof this.currentPreset?.hooks?.onUpdateProp === "function") this.currentPreset.hooks.onUpdateProp({
@@ -45,12 +49,30 @@ export class Organism {
       propName,
       component: this.component
     });
+
+    return this.currentProps;
   }
   
   componentWillLoad() {
     if (this.match && this.match.params && this.match.params.preset) {
       this.setPreset(this.match.params.preset);
     }
+
+    if (typeof this.currentPreset?.hooks?.onComponentWillLoad === "function") this.currentPreset.hooks.onComponentWillLoad({
+      organismEl: this.organismEl,
+      props: this.currentProps,
+      preset: this.currentPreset,
+      component: this.component
+    });
+  }
+
+  componentDidLoad() {
+    if (typeof this.currentPreset?.hooks?.onComponentDidLoad === "function") this.currentPreset.hooks.onComponentDidLoad({
+      organismEl: this.organismEl,
+      props: this.currentProps,
+      preset: this.currentPreset,
+      component: this.component
+    });
   }
 
   render() {

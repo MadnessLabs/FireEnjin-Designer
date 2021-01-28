@@ -34,6 +34,8 @@ export interface OrganismPreset {
   beforeHTML?: (component: OrganismComponent, props: any) => string;
   afterHTML?: (component: OrganismComponent, props: any) => string;
   hooks?: {
+    onComponentDidLoad: (data?: { organismEl?: any; props?: any; preset?: OrganismPreset; component?: OrganismComponent }) => void;
+    onComponentWillLoad: (data?: { organismEl?: any; props?: any; preset?: OrganismPreset; component?: OrganismComponent }) => void;
     onSetPreset: (data?: { organismEl?: any; props?: any; preset?: OrganismPreset; presetName?: string; component?: OrganismComponent }) => void;
     onUpdateProp?: (data?: { organismEl?: any; props?: any; preset?: OrganismPreset; propName?: string; component?: OrganismComponent }) => void;
   };
