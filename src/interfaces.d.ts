@@ -30,9 +30,9 @@ export interface OrganismPreset {
   name?: string;
   description?: string;
   props?: any;
-  innerHTML?: (component: any, props: any) => string;
-  beforeHTML?: (component: any, props: any) => string;
-  afterHTML?: (component: any, props: any) => string;
+  innerHTML?: (component: OrganismComponent, props: any) => string;
+  beforeHTML?: (component: OrganismComponent, props: any) => string;
+  afterHTML?: (component: OrganismComponent, props: any) => string;
   hooks?: {
     onSetPreset: (data?: { organismEl?: any; props?: any; preset?: OrganismPreset; presetName?: string; component?: OrganismComponent }) => void;
     onUpdateProp?: (data?: { organismEl?: any; props?: any; preset?: OrganismPreset; propName?: string; component?: OrganismComponent }) => void;
