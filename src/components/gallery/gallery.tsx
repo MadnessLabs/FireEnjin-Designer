@@ -1,6 +1,5 @@
 import '@stencil/router';
 import { Component, Element, State, h, Prop, ComponentInterface } from "@stencil/core";
-import Slideout from "slideout";
 import marked from 'marked';
 
 @Component({
@@ -10,7 +9,6 @@ import marked from 'marked';
 })
 export class Gallery implements ComponentInterface {
   docs: any = [];
-  slideout: Slideout;
 
   @Prop() host: string;
   @Prop() ionicDocsFilePath: string;
@@ -26,7 +24,6 @@ export class Gallery implements ComponentInterface {
     if (event) {
       event.preventDefault();
     }
-    this.slideout.toggle();
   }
 
   viewDocs(event) {
@@ -62,12 +59,6 @@ export class Gallery implements ComponentInterface {
       console.log("Error getting docs for components.");
     }
     this.components = this.docs && this.docs.components && this.docs.components ? this.docs.components : [];
-    this.slideout = new Slideout({
-      panel: this.galleryEl.querySelector('#panel'),
-      menu: this.galleryEl.querySelector('#menu'),
-      padding: 256,
-      tolerance: 70
-    });
     await this.getComponentPresets();
   }
 
