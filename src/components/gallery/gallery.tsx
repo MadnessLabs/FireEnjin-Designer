@@ -4,8 +4,7 @@ import marked from 'marked';
 
 @Component({
   tag: "fireenjin-designer-gallery",
-  styleUrl: "gallery.css",
-  scoped: true
+  styleUrl: "gallery.css"
 })
 export class Gallery implements ComponentInterface {
   docs: any = [];
@@ -19,10 +18,13 @@ export class Gallery implements ComponentInterface {
   
   @State() components: any = [];
   @State() currentDoc: string;
+  @State() menuOpen = false;
+  @State() docsOpen = false;
   
   toggleSidebar(event) {
     if (event) {
       event.preventDefault();
+      this.menuOpen = !this.menuOpen;
     }
   }
 
@@ -38,6 +40,7 @@ export class Gallery implements ComponentInterface {
       }
     }
     this.currentDoc = marked(docsMarkdown);
+    this.docsOpen = !this.docsOpen;
   }
 
   async getComponentPresets() {
@@ -64,7 +67,9 @@ export class Gallery implements ComponentInterface {
 
   render() {
     return [
-      <nav id="menu">
+      <nav id="menu" class={{
+        open: this.menuOpen
+      }}>
         <fireenjin-designer-sidebar useHash={this.useHash} host={this.host} components={this.components} />
       </nav>,
       <main id="panel">
@@ -75,7 +80,9 @@ export class Gallery implements ComponentInterface {
           {this.heading ? <h2 innerHTML={this.heading} /> : null}
           <a class="docs-button" onClick={(event) => this.viewDocs(event)}>Docs</a>
         </header>
-        <div id="page-wrapper">
+        <div id="page-wrapper" class={{
+          "docs-open": this.docsOpen
+        }}>
           <div class="docs-panel" innerHTML={this.currentDoc} />
           <stencil-router id="router" historyType={this.useHash ? "hash" : "browser" } >
             {this.components.map((component) => 
