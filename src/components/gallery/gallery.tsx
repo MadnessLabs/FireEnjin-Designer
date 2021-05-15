@@ -81,14 +81,17 @@ export class Gallery implements ComponentInterface {
           <a class="docs-button" onClick={(event) => this.viewDocs(event)}>Docs</a>
         </header>
         <div id="page-wrapper" class={{
-          "docs-open": this.docsOpen
+          "docs-open": this.docsOpen,
+          "menu-open": this.menuOpen
         }}>
           <div class="docs-panel" innerHTML={this.currentDoc} />
-          <stencil-router id="router" historyType={this.useHash ? "hash" : "browser" } >
-            {this.components.map((component) => 
-              <stencil-route url={component.url} component='fireenjin-designer-organism' componentProps={{component, useHash: this.useHash, host: this.host}} />
-            )}
-          </stencil-router>
+          <div class="component-wrapper">
+            <stencil-router id="router" historyType={this.useHash ? "hash" : "browser" } >
+              {this.components.map((component) => 
+                <stencil-route url={component.url} component='fireenjin-designer-organism' componentProps={{component, useHash: this.useHash, host: this.host}} />
+              )}
+            </stencil-router>
+          </div>
         </div>
         
       </main>
